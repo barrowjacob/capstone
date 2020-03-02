@@ -4,15 +4,9 @@
    <title>RTO: Search</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite; padding: 0; height: 100%;">
+<body class="antique full-height">
 <nav th:include="partials/fragments :: nav"></nav>
-<div class="hero" id="search" style="
-            background-image: url('img/header:footer.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            height: 45vh;
-            margin-top: 1%;">
+<div class="hero hero-bg mt-1" id="search">
    <div class="container is-widescreen centered">
       <form method="GET" action="/search" class="column is-mobile">
          <div class="column is-two-thirds field has-addons">
@@ -22,61 +16,55 @@
                <strong>Search</strong></button>
          </div>
          <div class="columns is-hidden-touch">
-            <div id="checkboxes" class="column is-8 is-relative"
-                 style="display: flex;">
-               <strong class="has-text-light is-size-2" id="cats"
-                       style="margin-right: 2%;">Categories:</strong>
-               <div style="display: flex;" class="has-text-centered">
+            <div id="checkboxes" class="column is-8 is-relative flex">
+               <strong class="has-text-light is-size-2 mr-2" id="cats">Categories:</strong>
+               <div class="has-text-centered flex">
                   <input type="checkbox" name="huntCheck" value="hunting"
                          id="hunt-check" class="check">
                   <label class="check-label has-text-light is-size-4"
                          for="hunt-check"><img
-                    src="img/hunt_icon.png" alt="hunt"
-                    style="height: 50px; width: 50px;">Hunting</label>
+                    src="img/hunt_icon.png" alt="hunt" class="icon">Hunting</label>
                </div>
-               <div style="display: flex;" class="has-text-centered">
+               <div class="has-text-centered flex">
                   <input type="checkbox" name="campCheck" value="camping"
                          id="camp-check" class="check">
                   <label class="check-label has-text-light is-size-4"
                          for="camp-check"><img
-                    src="img/tent_icon.png" alt="tent"
-                    style="height: 50px; width: 50px;">Camping</label>
+                    src="img/tent_icon.png" alt="tent" class="icon">Camping</label>
                </div>
-               <div style="display:flex;" class="has-text-centered">
+               <div class="has-text-centered flex">
                   <input type="checkbox" name="fishCheck" value="fishing"
                          id="fish-check" class="check">
                   <label class="check-label has-text-light is-size-4"
                          for="fish-check"><img
-                    src="img/fish_icon.png" alt="fish"
-                    style="height: 50px; width: 50px;">Fishing</label>
+                    src="img/fish_icon.png" alt="fish" class="icon">Fishing</label>
                </div>
                <div class="has-text-centered">
                   <input type="checkbox" name="boatCheck" value="boating"
                          id="boat-check" class="check">
                   <label class="has-text-light check-label is-size-4"
                          for="boat-check"><img
-                    src="img/boat_icon.png" alt="boat"
-                    style="height: 50px; width: 50px;">Boating</label>
+                    src="img/boat_icon.png" alt="boat" class="icon">Boating</label>
                </div>
             </div>
          </div>
       </form>
    </div>
 </div>
-<main style="margin-top: 3%; background-color: antiquewhite;">
-   <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+<main class="antique mt-3">
+   <div class="column-center-flex">
       <div th:if="${searchQuery.size() > 0}"
            th:each="place,plStat : ${searchQuery}"
            class="columns centered is-relative">
          <div th:if="${plStat.count < 11}" class="column is-8" style="margin-bottom: 2%;">
             <a th:href="@{'place/' + ${place.id}}">
-               <div class="card" style="display: flex; max-height: 200px">
+               <div class="card flex" style="max-height: 200px">
                   <div th:each="image,iStat : ${place.placeImages}"
                        style="height: 200px; max-width: 325px">
                      <img th:if="${iStat.first}" th:src="${image.imagePath}"
                           style="min-width: 325px; height: 200px;">
                   </div>
-                  <div class="card-content" style="margin-left: 2%;">
+                  <div class="card-content ml-2">
                      <p>
                         <strong th:text="'Title: ' + ${place.title}"></strong>
                         <br>

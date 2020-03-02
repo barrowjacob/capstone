@@ -1,3 +1,6 @@
+* {
+    padding: 0;
+}
 nav, .btn {
     /*font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;*/
     font-size: 16px;
@@ -25,14 +28,12 @@ body {
 .navbar-menu {
     background-color: #363636;
 }
-
 .splash-form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 75vw;
-
 }
 .navbar-item:hover {
     background-color: #363636 !important;
@@ -128,7 +129,7 @@ a:active {
     background-image: url("img/adventure-bg.jpg");
 }
 
-#hero-bg {
+.hero-bg {
     background-image: url('../img/header:footer.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -145,11 +146,26 @@ a:active {
 .full-height {
     height: 100%;
 }
+
+
+/* margins */
+.ml-2 {
+    margin-left: 2%;
+}
 .mb-3 {
     margin-bottom: 3%;
 }
+.mt-1 {
+    margin-top: 1%;
+}
 .mt-2 {
     margin-top: 2%;
+}
+.mt-3 {
+    margin-top: 3%;
+}
+.mr-2 {
+    margin-right: 2%;
 }
 .br-3 {
     border-radius: 3%;
