@@ -111,7 +111,7 @@
             </a>
          </div>
       </div>
-      <div th:if="${userPlaces == null}"
+      <div th:if="${userPlaces != null && userPlaces.size() == 0 }"
            style="padding-bottom: 2%; display: flex; justify-content: center; width: 45%;">
          <h1 class="is-size-3">You don't have any listings yet! To add one,
             click <a href="/places/create">here</a></h1>
