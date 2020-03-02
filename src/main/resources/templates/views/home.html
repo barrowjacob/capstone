@@ -4,16 +4,11 @@
    <title>RTO: Home</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite">
+<body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <main>
-   <!--   this is a comment so that i can test production capability-->
-   <div class="hero" style="
-            background-image: url('img/header:footer.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            height: 45vh;">
+<!--   hero bg -->
+   <div class="hero" id="hero-bg">
       <div class="container is-widescreen centered">
          <form method="GET" action="/search" class="column is-mobile">
             <div class="column is-two-thirds field has-addons">
@@ -22,34 +17,34 @@
                <button class="button is-3 is-dark control" type="submit">
                   <strong>Search</strong></button>
             </div>
+<!--            checkboxes-->
             <div class="columns is-hidden-touch">
-               <div id="checkboxes" class="column is-8 is-relative"
-                    style="display: flex;">
+               <div id="checkboxes" class="column is-8 is-relative flex">
                   <strong class="has-text-light is-size-2" id="cats"
                           style="margin-right: 2%;">Categories:</strong>
-                  <div style="display: flex;" class="has-text-centered">
+                  <div class="has-text-centered flex">
                      <input type="checkbox" name="huntCheck" value="hunting"
                             id="hunt-check" class="check">
                      <label class="check-label has-text-light is-size-4"
                             for="hunt-check"><img
-                       src="img/hunt_icon.png" alt="hunt"
-                       style="height: 50px; width: 50px;">Hunting</label>
+                       src="img/hunt_icon.png" class="icon"
+                       alt="hunt">Hunting</label>
                   </div>
-                  <div style="display: flex;" class="has-text-centered">
+                  <div class="has-text-centered flex">
                      <input type="checkbox" name="campCheck" value="camping"
                             id="camp-check" class="check">
                      <label class="check-label has-text-light is-size-4"
                             for="camp-check"><img
                        src="img/tent_icon.png" alt="tent"
-                       style="height: 50px; width: 50px;">Camping</label>
+                       class="icon">Camping</label>
                   </div>
-                  <div style="display:flex;" class="has-text-centered">
+                  <div class="has-text-centered flex">
                      <input type="checkbox" name="fishCheck" value="fishing"
                             id="fish-check" class="check">
                      <label class="check-label has-text-light is-size-4"
                             for="fish-check"><img
                        src="img/fish_icon.png" alt="fish"
-                       style="height: 50px; width: 50px;">Fishing</label>
+                       class="icon">Fishing</label>
                   </div>
                   <div class="has-text-centered">
                      <input type="checkbox" name="boatCheck" value="boating"
@@ -57,70 +52,67 @@
                      <label class="has-text-light check-label is-size-4"
                             for="boat-check"><img
                        src="img/boat_icon.png" alt="boat"
-                       style="height: 50px; width: 50px;">Boating</label>
+                       class="icon">Boating</label>
                   </div>
                </div>
             </div>
          </form>
       </div>
    </div>
+<!--   header -->
    <div class="centered title" style="height: 8vh;">
-      <h1 class="is-size-2" style="font-family: Libre Baskerville;"><strong>Rent The Outdoors</strong></h1>
+      <h1 class="is-size-2" style="font-family: Libre Baskerville;"><strong>Rent
+         The Outdoors</strong></h1>
    </div>
-   <div class="columns"
-        style="height: 100%;  margin-bottom: 3%;">
-      <div class="container card column is-10 is-hidden-mobile"
-           style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
-         <div class="column is-12 is-three-quarters-mobile"
-              style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 2%;">
+   <div class="columns full-height mb-3"
+   >
+<!--      three chosen places on display -->
+      <div
+        class="container card column is-10 is-hidden-mobile column-center-flex antique"
+        style="border-radius: 3%;">
+         <div class="column is-12 is-three-quarters-mobile mt-2 wrap-flex">
             <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
                  style=" margin: 0 3% 0 3%;">
                <a th:href="@{'/place/' + ${place.id}}">
-                  <div class="card is-hidden-mobile"
-                       style="height: 30vh; width: 20vw;">
+                  <div class="card is-hidden-mobile thirty-twenty">
                      <div class="card-image">
                         <div th:each="item,iStat : ${place.placeImages}">
                            <img th:if="${iStat.first}"
                                 th:src="${item.imagePath}"
-                                style="height: 20vh; width: 25vw; ">
+                                class="twenty-twentyFive">
                         </div>
                      </div>
-                     <div class="card-header is-size-5"
-                          style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
+                     <div class="card-header is-size-5 center-flex">
                         <strong th:text="${place.title}"></strong>
                      </div>
-                     <div class="card-body is-size-5"
-                          style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
-                        <strong th:text="'$'+ ${place.cost_per_day} + ' per day'"> </strong>
+                     <div class="card-body is-size-5 center-flex">
+                        <strong
+                          th:text="'$'+ ${place.cost_per_day} + ' per day'"> </strong>
                      </div>
                   </div>
                </a>
             </div>
          </div>
       </div>
-<!--                  mobile places-->
-   <div class="columns is-hidden-tablet"
-        style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite; height: 100%;">
-<!--      <div class="column is-12 is-three-quarters-mobile"-->
-<!--           style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 4%;">-->
+      <!--                  mobile places-->
+      <div
+        class="columns is-hidden-tablet column-center-flex antique full-height br-3">
          <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
-              style=" margin: 0 3% 3% 3%;" >
+              style="margin: 0 3% 3% 3%;">
             <a th:href="@{'/place/' + ${place.id}}">
                <div class="card" style="width: 75vw;"
-                    >
+               >
                   <div class="card-image">
                      <div th:each="item,iStat : ${place.placeImages}">
                         <img th:if="${iStat.first}"
                              th:src="${item.imagePath}"
-                             >
+                        >
                      </div>
                   </div>
-                  <div class="card-header"
-                       style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
+                  <div class="card-header center-flex">
                      <span th:text="${place.title}"></span>
                   </div>
-                  <div class="card-body"
-                       style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
+                  <div class="card-body center-flex">
                         <span
                           th:text="'$'+ ${place.cost_per_day} + ' per day'"> </span>
                   </div>
@@ -131,10 +123,8 @@
    </div>
 
 
-
-
-
-   <footer class="is-hidden-mobile" th:include="partials/fragments :: footer"></footer>
+   <footer class="is-hidden-mobile"
+           th:include="partials/fragments :: footer"></footer>
    <script src="js/main.js"></script>
    <script th:include="partials/fragments :: navbarScript"></script>
 
