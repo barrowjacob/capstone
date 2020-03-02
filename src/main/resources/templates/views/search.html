@@ -52,7 +52,7 @@
    </div>
 </div>
 <main class="antique mt-3">
-   <div class="column-center-flex">
+   <div class="column-center-flex full-height">
       <div th:if="${searchQuery.size() > 0}"
            th:each="place,plStat : ${searchQuery}"
            class="columns centered is-relative">
@@ -79,8 +79,8 @@
             </a>
          </div>
       </div>
-      <div th:if="${searchQuery.size() == 0}">
-         <div class="card column is-6 is-offset-3 has-text-centered" style="padding: 2%;">
+      <div th:if="${searchQuery.size() == 0}" style="padding: 2%;">
+         <div class="card has-text-centered" style="padding: 2%; width: 100%;">
             <h1 class="is-size-1">Sorry, no results found.</h1>
             <h2 class="is-size-2">Please try again!</h2>
          </div>

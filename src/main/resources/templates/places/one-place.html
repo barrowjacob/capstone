@@ -8,13 +8,16 @@
 
 <nav th:insert="partials/fragments :: nav"></nav>
 
-<article style="background-color: #FAEBD7; background-image: url(/img/oneplace.jpg); background-repeat: no-repeat;
+<article class="column-center-flex antique" style="
+            background-image: url(/img/oneplace.jpg);
+            background-repeat: no-repeat;
             background-position: bottom;
-            background-size: cover; display: flex; justify-content: center; flex-direction: column; align-items: center; width: 100%;">
+            background-size: cover;
+            width: 100%;">
 
 <!--    first div-->
-      <div
-        style="width: 100%; display: flex; justify-content: center; align-items: center; padding: 2% 2% 0 2%; margin-top: 6%;">
+      <div class="center-flex"
+        style="width: 100%;padding: 2% 2% 0 2%; margin-top: 6%;">
          <div class="column"
               style="border: 2px solid black; padding: 0; height: 403px; width: 67%; margin-right: 1px; background-color: white">
             <div th:each="image,iStat : ${place.placeImages}">
@@ -22,8 +25,8 @@
                     style="padding: 0; margin: 0; height: 400px; width: 100%;">
             </div>
          </div>
-         <div class="column is-one-third-tablet is-hidden-mobile"
-              style="display: flex; flex-wrap: wrap; padding: 0; margin: 0; border: 2px solid black; width: 505px; height: 403px; background-color: white ">
+         <div class="column is-one-third-tablet is-hidden-mobile flex"
+              style="flex-wrap: wrap; padding: 0; margin: 0; border: 2px solid black; width: 505px; height: 403px; background-color: white ">
             <div th:each="image,iStat : ${place.placeImages}"
                  style="margin: 0 1px 1px 0; height: 199px; display: flex; flex-wrap: wrap;">
                <img th:if="${iStat.count > 1 && iStat.count < 6}"
@@ -33,19 +36,18 @@
          </div>
       </div>
 <!--    second div-->
-   <div style="width: 100%; display: flex; justify-content: space-between; padding: 2% 2% 0 2%; ">
+   <div class="flex" style="width: 100%; justify-content: space-between; padding: 2% 2% 0 2%; ">
 <!--       class="columns" style="width: 100%; display: flex; justify-content: space-between;"-->
-       <div class="column "
-              style=" padding: 0;">
-            <div class="card"
-                 style="display: flex; justify-content: space-between; align-items: center; flex-direction: column; width: 90%; box-shadow: 2px 2px 3px 1px darkslategray; height: 100%">
-               <div
-                 style="display: flex; margin-top: 3%; width: 100%; justify-content: center;">
+       <div class="column">
+            <div class="card flex full-height"
+                 style="justify-content: space-between; align-items: center; flex-direction: column; width: 90%; box-shadow: 2px 2px 3px 1px darkslategray; ">
+               <div class="flex mt-3"
+                 style="width: 100%; justify-content: center;">
                   <h1 class="is-size-2"
                       style="margin-right: 15%; margin-left: 25%;"
                       th:text="${place.title}"></h1>
-                  <div
-                    style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 1%;">
+                  <div class="center-flex"
+                    style="margin-right: 1%;">
 
                      <a th:href="@{'/profile/' + ${place.user.id}}">
                         <img th:src="${place.user.image_path}"
@@ -62,7 +64,7 @@
                     style="display: flex; justify-content: center; flex-direction: column; align-items: start; flex-wrap: wrap; width: 90%; margin-left: 2%;">
                   <strong th:text="'Price: '"></strong>
                   <span
-                    th:text="'$' + ${#numbers.formatDecimal(place.cost_per_day, 0, 'COMMA', 2, 'POINT')} + ' per day'"></span></span>
+                    th:text="'$' + ${#numbers.formatDecimal(place.cost_per_day, 0, 'COMMA', 2, 'POINT')} + ' per day'"></span>
                   <strong th:text="'Description: '"></strong>
                   <span
                     th:text="'Description: ' + ${place.description}"> </span>
@@ -79,11 +81,10 @@
                   <span th:if="${place.amenities == null}" th:text="' none'"
                         style="margin-bottom: 1%"></span>
                </div>
-               <div class="card-footer"
-                    style="display: flex; justify-content: center; width: 100%;">
-                  <div class="column"
-                       style="display: flex; justify-content: center;">
-                     <div style="display: flex; justify-content: center;"
+               <div class="card-footer center-flex"
+                    style="width: 100%;">
+                  <div class="column center-flex">
+                     <div class="center-flex"
                           th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
                         <button id="showModal" class="button is-dark">Book Now
                         </button>
@@ -152,8 +153,7 @@
    </div>
 
    <!--    third div-->
-    <div style="width: 100%; display: flex; justify-content: center; padding: 2% 2% 4% 2%; ">
-<!--       style="display: flex; justify-content: center;"-->
+    <div class="center-flex" style="width: 100%;padding: 2% 2% 4% 2%; ">
       <div id="map"
            style="padding: 0; height: 400px; width: 100%; box-shadow: 2px 2px 3px 1px darkslategray;background-color: lightgray;">
          <h1 id="address-text" th:text="${place.address}"></h1>
@@ -168,13 +168,16 @@
 
 <script>
 
-
+    //toggle modal
     $('#showModal').click(function () {
         $('#bookModal').toggleClass("is-active")
     });
+
     $('#closeModal').click(function () {
         $('#bookModal').toggleClass("is-active")
     });
+
+    //mapbox
     mapboxgl.accessToken = mapBoxToken;
     const map = new mapboxgl.Map({
         container: 'map',
@@ -261,7 +264,8 @@
     });
 
 
-    $(document).ready(function () {
+
+    //calendar implementation
         var calBookingsBucket = [];
         var req = $.ajax({
             url: '/bookings.json',
@@ -302,7 +306,6 @@
 
 
         calendar.render();
-    }); //end of doc.ready
 
 </script>
 

@@ -170,6 +170,9 @@ a:active {
 .br-3 {
     border-radius: 3%;
 }
+
+
+/* flex */
 .column-center-flex {
     display: flex;
     justify-content: center;
@@ -187,6 +190,9 @@ a:active {
     align-items: center;
     flex-wrap: wrap;
 }
+
+
+/* dimensions */
 .thirty-twenty {
     height: 30vh;
     width: 20vw;
